@@ -1,16 +1,23 @@
-import React from 'react';
-import VoiceSelector from '../components/molecules/voice-selector';
-import PersonalitySelector from '../components/molecules/personality-selector';
-import styles from './styles/MyJarvis.module.css';
-import {Divider, Spacer, Card, CardBody, CardFooter, CardHeader, Image, Button } from '@nextui-org/react';
-import InputUsername from '../components/atoms/input-username';
-import InputSessionname from '../components/atoms/input-sessionname';
-import jarvisLogo from 'public/jarvis-logo.png';
+import React from "react";
+import VoiceSelector from "../components/molecules/voice-selector";
+import PersonalitySelector from "../components/molecules/personality-selector";
+import styles from "./styles/MyJarvis.module.css";
+import {
+  Divider,
+  Spacer,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Image,
+  Button,
+} from "@nextui-org/react";
+import InputSessionname from "../components/atoms/input-sessionname";
 
-const MyJarvis: React.FC = () => {
+const CreateJarvis: React.FC = () => {
   return (
     <div className={styles.container}>
-      <Card className="max-w-[400px]" >
+      <Card className="max-w-[400px]">
         <CardHeader className="flex gap-3">
           <Image
             alt="nextui logo"
@@ -24,27 +31,26 @@ const MyJarvis: React.FC = () => {
             <p className="text-small text-default-500">Jarvis's master</p>
           </div>
         </CardHeader>
-        <Divider/>
+        <Divider />
         <CardBody>
-          <InputSessionname/>
+          <InputSessionname />
           <Spacer y={8} />
           <p>Define the attribute for your chat session:</p>
           <Divider />
           <div className={styles.selectorsContainer}>
-            <VoiceSelector  />
-            <PersonalitySelector  />
+            <VoiceSelector />
+            <PersonalitySelector />
           </div>
         </CardBody>
-        <Divider/>
+        <Divider />
         <CardFooter>
           <div className={styles.startChattingButtonContainer}>
-            <Button color='primary' > Start Chatting</Button>
+            <Button color="primary"> Start Chatting</Button>
           </div>
         </CardFooter>
-     </Card>
-
+      </Card>
     </div>
   );
 };
 
-export default MyJarvis;
+export default CreateJarvis;
