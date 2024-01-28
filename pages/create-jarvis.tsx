@@ -1,18 +1,19 @@
-import React from "react";
-import VoiceSelector from "../components/molecules/voice-selector";
-import PersonalitySelector from "../components/molecules/personality-selector";
-import styles from "./styles/MyJarvis.module.css";
 import {
-  Divider,
-  Spacer,
+  Button,
   Card,
   CardBody,
   CardFooter,
   CardHeader,
+  Divider,
   Image,
-  Button,
+  Spacer,
 } from "@nextui-org/react";
+import React from "react";
 import InputSessionname from "../components/atoms/input-sessionname";
+import SwitchVerbalChat from "../components/atoms/switch-verbalchat";
+import PersonalitySelector from "../components/molecules/personality-selector";
+import VoiceSelector from "../components/molecules/voice-selector";
+import styles from "./styles/MyJarvis.module.css";
 
 const CreateJarvis: React.FC = () => {
   return (
@@ -35,7 +36,7 @@ const CreateJarvis: React.FC = () => {
         <CardBody>
           <InputSessionname />
           <Spacer y={8} />
-          <p>Define the attribute for your chat session:</p>
+          <p>Define the attribute for your personal Jarvis</p>
           <Divider />
           <div className={styles.selectorsContainer}>
             <VoiceSelector />
@@ -44,6 +45,7 @@ const CreateJarvis: React.FC = () => {
         </CardBody>
         <Divider />
         <CardFooter>
+          <SwitchVerbalChat></SwitchVerbalChat>
           <div className={styles.startChattingButtonContainer}>
             <Button color="primary"> Start Chatting</Button>
           </div>
