@@ -1,7 +1,7 @@
 {
   "eslint.autoFixOnSave": true, // (even though VSCode has this as deprecated), have tried with and without this line
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true,
-    "source.fixAll.eslint": true
+    "source.organizeImports": "explicit",
+    "source.fixAll.eslint": "explicit"
   }
 }
