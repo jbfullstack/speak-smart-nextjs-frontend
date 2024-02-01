@@ -3,7 +3,7 @@
 @import "tailwindcss/utilities";
 
 :root {
-  --background-color-light: #d1d1d1;
+  --background-color-light: gray;
   --background-color-dark: #333;
 
   --text-color-dark: #f4f4f4;
@@ -32,30 +32,41 @@
   --navbar-text: var(--navbar-text-light);
 }
 
-/* Reset some basic elements */
-html,
-body,
-#__next {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.sidebar {
+  width: 8rem;
+  transition: margin-left 0.5s;
 }
 
-/* Add global styles */
-body {
-  font-family: Arial, sans-serif;
-  /* background-color: #f4f4f4;
-  color: #333; */
+.menu-button {
+  display: none; /* Hide by default, shown in media query */
+  position: fixed; /* Fixed position */
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Place on the right */
+  background: transparent; /* Optional: make the background transparent */
+  border: none; /* Optional: remove border */
+  cursor: pointer; /* Change cursor to pointer */
 }
 
-/* Link styles */
-a {
-  color: #0070f3;
-  text-decoration: none;
+/* Sidebar initially off-screen on smaller screens */
+@media (max-width: 768px) {
+  .sidebar {
+    margin-left: -8rem; /* Adjust width as necessary */
+    transition: margin-left 0.5s;
+  }
+
+  .sidebar.visible {
+    margin-left: 0;
+  }
+
+  .menu-button {
+    display: inline-block; /* or 'block' depending on your layout */
+  }
 }
 
-/* Add styles for active links */
-a:hover {
-  text-decoration: underline;
+/* Sidebar always visible on larger screens */
+@media (min-width: 769px) {
+  .sidebar {
+    margin-left: 0;
+    transition: margin-left 0.5s;
+  }
 }

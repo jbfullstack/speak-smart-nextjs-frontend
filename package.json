@@ -14,11 +14,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@headlessui/react": "^1.7.18",
     "@nextui-org/react": "^2.2.9",
     "framer-motion": "^11.0.3",
     "next": "latest",
+    "next-themes": "^0.2.1",
     "react": "latest",
     "react-dom": "latest",
+    "react-icons": "^5.0.1",
     "tailwind": "^4.0.0"
   },
   "devDependencies": {
@@ -34,7 +37,6 @@
     "eslint-plugin-react": "latest",
     "eslint-plugin-react-hooks": "latest",
     "husky": "latest",
-    "postcss": "latest",
     "prettier": "^2.5.1",
     "tailwindcss": "latest",
     "typescript": "^4.4.4"

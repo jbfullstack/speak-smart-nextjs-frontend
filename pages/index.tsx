@@ -1,23 +1,20 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import React from 'react'
+import React from "react";
+import MainPage from "../components/MainPage";
 
 const HomePage: React.FC = () => {
   return (
-    <div className="">
-      <Head>
-        <title>Welcome to Speak Smart</title>
-        {/* Add any other head elements here */}
-      </Head>
+    <MainPage title="XXXX"></MainPage>
+    // <div className="">
+    //   <Head>
+    //     <title>Home made Jarvis</title>
+    //     <meta name="description" content="Home made Jarvis" />
+    //     <link rel="icon" href="/favicon.ico" />
+    //   </Head>
+    //   {/* <Navbar /> */}
 
-      <main className="max-w-4xl mx-auto pt-16">
-        <h1>Welcome to Speak Smart, a home-made Jarvis</h1>
-        <Link href="/my-jarvis">
-          My Jarvis
-        </Link>
-      </main>
-    </div>
-  )
-}
+    //   <SideNavBar />
+    // </div>
+  );
+};
 
-export default HomePage
+export default HomePage;
