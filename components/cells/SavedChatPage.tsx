@@ -1,3 +1,4 @@
+import { Spinner } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import Layout from "../layout";
 import ChatSessionDataFetcher from "../molecules/chat-session-data-fetcher";
@@ -35,15 +36,22 @@ export default function SavedChatPage() {
   }, []);
 
   if (error) return <div>Error: {error}</div>;
+  if (isLoading)
+    return (
+      <Layout pageTitle={title}>
+        <h1 className="text-4xl">{title}</h1>
+        <Spinner label="Loading sessions..." color="warning" />
+      </Layout>
+    );
+
   return (
     <Layout pageTitle={title}>
       <h1 className="text-4xl">{title}</h1>
-      <ChatSessionDataFetcher sessions={sessions} />
-      {/* <div className="min-h-screen flex flex-col">
-        <div className="m-auto">
-          <h1 className="text-4xl">{title}</h1>
-        </div>
-      </div> */}
+      {sessions.length > 0 ? (
+        <ChatSessionDataFetcher sessions={sessions} />
+      ) : (
+        <div>No Saved Sessions</div>
+      )}
     </Layout>
   );
 }
