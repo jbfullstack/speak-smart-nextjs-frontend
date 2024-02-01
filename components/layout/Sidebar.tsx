@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { BsEnvelopeAt, BsInfoSquare } from "react-icons/bs";
 import { FaRedhat, FaTshirt } from "react-icons/fa";
 import { SlHome } from "react-icons/sl";
 import { ThemeSwitcher } from "../atoms/ThemeSwitcher";
@@ -64,13 +63,9 @@ export default function Sidebar({ show, setter }) {
         <div className="flex flex-col">
           <ThemeSwitcher />
           <MenuItem name="Home" route="/" icon={<SlHome />} />
-          <MenuItem
-            name="T-Shirts"
-            route="/create-jarvis"
-            icon={<FaTshirt />}
-          />
-          <MenuItem name="Hats" route="/create-jarvis" icon={<FaRedhat />} />
-          <MenuItem
+          <MenuItem name="T-Shirts" route="/new-jarvis" icon={<FaTshirt />} />
+          <MenuItem name="Hats" route="/saved-jarvis" icon={<FaRedhat />} />
+          {/* <MenuItem
             name="About Us"
             route="/create-jarvis"
             icon={<BsInfoSquare />}
@@ -79,7 +74,7 @@ export default function Sidebar({ show, setter }) {
             name="Contact"
             route="/create-jarvis"
             icon={<BsEnvelopeAt />}
-          />
+          /> */}
         </div>
       </div>
       {show ? <ModalOverlay /> : <></>}

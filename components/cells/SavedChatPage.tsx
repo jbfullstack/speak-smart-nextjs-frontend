@@ -1,7 +1,6 @@
-import { Accordion, AccordionItem, CircularProgress } from "@nextui-org/react";
-import React, { useEffect, useState } from "react";
-import ChatSessionDataFetcher from "../components/molecules/chat-session-data-fetcher";
-import CreateChatSession from "../components/molecules/create-new-chatsession";
+import { useEffect, useState } from "react";
+import Layout from "../layout";
+import ChatSessionDataFetcher from "../molecules/chat-session-data-fetcher";
 
 export interface SessionType {
   uuid: string;
@@ -9,7 +8,8 @@ export interface SessionType {
   historyLength: number;
 }
 
-const CreateJarvis: React.FC = () => {
+export default function SavedChatPage() {
+  const title = "Saved chat";
   const [sessions, setSessions] = useState<SessionType[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -35,25 +35,15 @@ const CreateJarvis: React.FC = () => {
   }, []);
 
   if (error) return <div>Error: {error}</div>;
-
   return (
-    <Accordion>
-      <AccordionItem
-        key="CreateChatSession"
-        aria-label="Create Chat Session"
-        title="Create a new chat session"
-      >
-        <CreateChatSession />
-      </AccordionItem>
-      <AccordionItem key="ChatSessionMemory" aria-label="Memory" title="Memory">
-        {isLoading ? (
-          <CircularProgress label="Fetching chat sessions..." />
-        ) : (
-          <ChatSessionDataFetcher sessions={sessions} />
-        )}
-      </AccordionItem>
-    </Accordion>
+    <Layout pageTitle={title}>
+      <h1 className="text-4xl">{title}</h1>
+      <ChatSessionDataFetcher sessions={sessions} />
+      {/* <div className="min-h-screen flex flex-col">
+        <div className="m-auto">
+          <h1 className="text-4xl">{title}</h1>
+        </div>
+      </div> */}
+    </Layout>
   );
-};
-
-export default CreateJarvis;
+}
