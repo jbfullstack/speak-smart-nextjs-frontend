@@ -5,7 +5,12 @@ const SwitchVerbalChat = () => {
   const [value, setValue] = React.useState(true);
 
   return (
-    <Switch defaultSelected onValueChange={setValue}>
+    <Switch
+      defaultSelected
+      onValueChange={setValue}
+      // startContent={<SunIcon />}
+      // endContent={<MoonIcon />}
+    >
       {value ? "spoken" : "written"}
     </Switch>
   );

@@ -8,6 +8,7 @@ import {
   Image,
   Spacer,
 } from "@nextui-org/react";
+import { useTheme } from "next-themes";
 import React from "react";
 import InputSessionname from "../atoms/input-sessionname";
 import SwitchVerbalChat from "../atoms/switch-verbalchat";
@@ -16,6 +17,15 @@ import styles from "./styles/CreateChatSession.module.css";
 import VoiceSelector from "./voice-selector";
 
 const CreateChatSession: React.FC = () => {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
+  const buttonStyle = {
+    backgroundColor: isDark ? "#0072F5" : "",
+    color: "white", // Set text color if needed
+    // Add other styling as necessary
+  };
+
   return (
     <div className={styles.container}>
       <Card className="max-w-[400px]">
@@ -47,7 +57,8 @@ const CreateChatSession: React.FC = () => {
         <CardFooter>
           <SwitchVerbalChat></SwitchVerbalChat>
           <div className={styles.startChattingButtonContainer}>
-            <Button color="primary"> Start Chatting</Button>
+            {/* <Button style={buttonStyle}>Start Chatting</Button> */}
+            <Button>Start Chatting</Button>
           </div>
         </CardFooter>
       </Card>

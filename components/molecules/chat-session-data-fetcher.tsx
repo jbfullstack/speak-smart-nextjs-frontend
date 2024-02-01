@@ -42,7 +42,7 @@ const ChatSessionDataFetcher = ({ sessions }: { sessions: SessionType[] }) => {
           <Divider />
           <CardFooter>
             <div className={styles.continueChattingButtonContainer}>
-              <Button color="primary"> Continue Chatting</Button>
+              <Button> Continue Chatting</Button>
             </div>
           </CardFooter>
         </Card>

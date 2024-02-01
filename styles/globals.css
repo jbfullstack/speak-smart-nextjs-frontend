@@ -1,9 +1,41 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root {
+  --background-color-light: #d1d1d1;
+  --background-color-dark: #333;
+
+  --text-color-dark: #f4f4f4;
+  --text-color-light: #333;
+
+  --navbar-bg-light: #302e2e;
+  --navbar-bg-dark: #5e5d5d;
+
+  --navbar-text-light: #000000;
+  --navbar-text-dark: #ffffff;
+}
+
+[data-theme="dark"] {
+  --background-color: var(--background-color-dark);
+  --text-color: var(--text-color-dark);
+
+  --navbar-bg: var(--navbar-bg-dark);
+  --navbar-text: var(--navbar-text-dark);
+}
+
+[data-theme="light"] {
+  --background-color: var(--background-color-light);
+  --text-color: var(--text-color-light);
+
+  --navbar-bg: var(--navbar-bg-light);
+  --navbar-text: var(--navbar-text-light);
+}
 
 /* Reset some basic elements */
-html, body, #__next {
+html,
+body,
+#__next {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -13,8 +45,8 @@ html, body, #__next {
 /* Add global styles */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+  /* background-color: #f4f4f4;
+  color: #333; */
 }
 
 /* Link styles */
