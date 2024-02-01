@@ -2,45 +2,60 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import { FaRedhat, FaTshirt } from "react-icons/fa";
 import { SlHome } from "react-icons/sl";
 import { ThemeSwitcher } from "../atoms/ThemeSwitcher";
 
 // import logo from "@/img/logo.svg";
-const logo = "/static/jarvis-logo.png";
+const logo = "/static/logo.svg";
 
 export default function Sidebar({ show, setter }) {
   const sidebarClass = show ? "sidebar visible" : "sidebar";
   const router = useRouter();
 
-  // Define our base class
-  const className =
-    " w-[250px] transition-[margin-left] ease-in-out duration-500 fixed md:static top-0 bottom-0 left-0 z-40";
-  // Append class based on state of sidebar visiblity
-  const appendClass = show ? " ml-0" : " ml-[-250px] md:ml-0";
-
   // Clickable menu items
   const MenuItem = ({ icon, name, route }) => {
-    // Highlight menu item based on currently displayed route
-    const colorClass =
-      router.pathname === route
-        ? "text-white"
-        : "text-white/50 hover:text-white";
+    const { theme, systemTheme } = useTheme();
+    const router = useRouter();
+
+    const [activeStyle, setActiveStyle] = useState("");
+    const [colorClass, setColorClass] = useState("");
+
+    useEffect(() => {
+      const effectiveTheme = theme === "system" ? systemTheme : theme;
+      const isDark = effectiveTheme === "dark";
+      const isActive = router.asPath === route;
+
+      setActiveStyle(
+        isActive
+          ? isDark
+            ? "bg-gray-700 text-white font-semibold"
+            : "bg-gray-300 text-black font-semibold"
+          : ""
+      );
+
+      setColorClass(
+        isActive
+          ? isDark
+            ? "text-white"
+            : "text-black"
+          : "text-white/50 hover:text-white"
+      );
+    }, [theme, systemTheme, route, router.asPath]);
 
     return (
-      <Link
-        href={route}
-        onClick={() => {
-          setter((oldVal) => !oldVal);
-        }}
-        className={`flex gap-1 [&>*]:my-auto text-md pl-6 py-3 border-b-[1px] border-b-white/10 ${colorClass}`}
+      <div
+        className={`flex gap-1 [&>*]:my-auto text-md pl-6 py-3 border-b-[1px] border-b-white/10 ${colorClass} ${activeStyle} `}
       >
-        <div className="text-xl flex [&>*]:mx-auto w-[30px]">{icon}</div>
-        <div>{name}</div>
-      </Link>
+        <Link href={route} onClick={() => setter((oldVal) => !oldVal)}>
+          <div className={`text-xl flex [&>*]:mx-auto w-[30px]`}>{icon}</div>
+          <div>{name}</div>
+        </Link>
+      </div>
     );
   };
-
   // Overlay to prevent clicks in background, also serves as our close button
   const ModalOverlay = () => (
     <div
@@ -65,16 +80,6 @@ export default function Sidebar({ show, setter }) {
           <MenuItem name="Home" route="/" icon={<SlHome />} />
           <MenuItem name="T-Shirts" route="/new-jarvis" icon={<FaTshirt />} />
           <MenuItem name="Hats" route="/saved-jarvis" icon={<FaRedhat />} />
-          {/* <MenuItem
-            name="About Us"
-            route="/create-jarvis"
-            icon={<BsInfoSquare />}
-          />
-          <MenuItem
-            name="Contact"
-            route="/create-jarvis"
-            icon={<BsEnvelopeAt />}
-          /> */}
         </div>
       </div>
       {show ? <ModalOverlay /> : <></>}
