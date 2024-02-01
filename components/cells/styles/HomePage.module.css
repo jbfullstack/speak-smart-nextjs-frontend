@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.card {
+  max-width: 800px;
+  text-align: center;
+}
+
+.heading1 {
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.paragraph {
+  flex-grow: 1;
+  margin-bottom: 1em;
+}
+
+.imageTextContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.responsiveImage {
+  max-width: 100%;
+  flex-basis: auto;
+  height: auto;
+  margin-right: 20px;
+}
+
+.heading3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.buttonCustom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.5;
+  padding: 20px;
+  height: auto;
+  gap: 4px;
+}

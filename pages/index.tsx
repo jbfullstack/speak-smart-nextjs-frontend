@@ -1,8 +1,8 @@
 import React from "react";
-import MainPage from "../components/molecules/MainPage";
+import Home from "../components/cells/HomePage";
 
 const HomePage: React.FC = () => {
-  return <MainPage></MainPage>;
+  return <Home></Home>;
 };
 
 export default HomePage;

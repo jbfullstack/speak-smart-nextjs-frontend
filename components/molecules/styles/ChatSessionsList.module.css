@@ -13,3 +13,16 @@
   width: 100%;
   padding: 10px;
 }
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.deleteChattingButtonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+}

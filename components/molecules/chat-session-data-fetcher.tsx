@@ -5,9 +5,12 @@ import {
   CardFooter,
   CardHeader,
   Divider,
-  Spacer,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
 } from "@nextui-org/react";
 
+import { DeleteChat } from "./DeleterChat";
 import styles from "./styles/ChatSessionsList.module.css";
 
 export interface SessionType {
@@ -33,12 +36,20 @@ const ChatSessionDataFetcher = ({ sessions }: { sessions: SessionType[] }) => {
           </CardHeader>
           <Divider />
           <CardBody>
-            <Spacer y={8} />
-            <p>History Length: {session.historyLength}</p>
+            {/* <Spacer y={8} /> */}
+            <p>Request made: {(session.historyLength - 1) / 2}</p>
           </CardBody>
           <Divider />
           <CardFooter>
-            <Button color="warning"> Delete </Button>
+            <Popover>
+              <PopoverTrigger>
+                <Button color="warning"> Delete </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <DeleteChat sessionId={session.uuid} />
+              </PopoverContent>
+            </Popover>
+
             <div className={styles.continueChattingButtonContainer}>
               <Button> Continue </Button>
             </div>
