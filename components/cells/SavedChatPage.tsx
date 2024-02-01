@@ -39,14 +39,14 @@ export default function SavedChatPage() {
   if (isLoading)
     return (
       <Layout pageTitle={title}>
-        <h1 className="text-4xl">{title}</h1>
+        <h1 className="text-4xl tfont-bold ml-4 p-2">{title}</h1>
         <Spinner label="Loading sessions..." color="warning" />
       </Layout>
     );
 
   return (
     <Layout pageTitle={title}>
-      <h1 className="text-4xl">{title}</h1>
+      <h1 className="text-4xl tfont-bold ml-4 p-2">{title}</h1>
       {sessions.length > 0 ? (
         <ChatSessionDataFetcher sessions={sessions} />
       ) : (

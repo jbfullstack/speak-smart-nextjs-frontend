@@ -4,8 +4,8 @@ import { useRouter } from "next/router";
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { FaRedhat, FaTshirt } from "react-icons/fa";
-import { SlHome } from "react-icons/sl";
+import { FaUserPlus, FaUsers } from "react-icons/fa";
+import { LiaRobotSolid } from "react-icons/lia";
 import { ThemeSwitcher } from "../atoms/ThemeSwitcher";
 
 // import logo from "@/img/logo.svg";
@@ -14,6 +14,10 @@ const logo = "/static/logo.svg";
 export default function Sidebar({ show, setter }) {
   const sidebarClass = show ? "sidebar visible" : "sidebar";
   const router = useRouter();
+
+  const sideBarStyle = {
+    marginLeft: "10px",
+  };
 
   // Clickable menu items
   const MenuItem = ({ icon, name, route }) => {
@@ -75,11 +79,11 @@ export default function Sidebar({ show, setter }) {
             {/* <img src={logo} alt="Company Logo" width={300} height={300} /> */}
           </Link>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col" style={sideBarStyle}>
           <ThemeSwitcher />
-          <MenuItem name="Home" route="/" icon={<SlHome />} />
-          <MenuItem name="T-Shirts" route="/new-jarvis" icon={<FaTshirt />} />
-          <MenuItem name="Hats" route="/saved-jarvis" icon={<FaRedhat />} />
+          <MenuItem name="Home" route="/" icon={<LiaRobotSolid />} />
+          <MenuItem name="Create" route="/new-jarvis" icon={<FaUserPlus />} />
+          <MenuItem name="List" route="/saved-jarvis" icon={<FaUsers />} />
         </div>
       </div>
       {show ? <ModalOverlay /> : <></>}
