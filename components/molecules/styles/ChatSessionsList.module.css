@@ -1,10 +1,24 @@
-.container {
+/* .container {
   padding-top: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   align-items: center;
   grid-gap: 20px;
   padding: 20px;
+} */
+
+.container {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  padding-top: 1rem;
+  padding: 20px; /* Adjusted to avoid duplicate padding property */
+}
+
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  align-items: start; /* Adjust this as needed */
+  grid-gap: 20px;
 }
 
 .continueChattingButtonContainer {

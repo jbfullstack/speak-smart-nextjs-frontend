@@ -2,10 +2,10 @@ import { Button, Divider, Spacer } from "@nextui-org/react";
 
 import styles from "./styles/ChatSessionsList.module.css";
 
-export const DeleteChat = ({ sessionId }) => {
+export const DeleteChat = ({ sessionId, fetchSessions, setError }) => {
   const endpoint =
     process.env.NEXT_PUBLIC_NESTJS_BACKEND_API_HOST +
-    `/user/jeremy/chat/${sessionId}/delete`;
+    `/ai-speaker/${sessionId}`;
 
   function deleteChat() {
     fetch(endpoint, {
@@ -14,13 +14,22 @@ export const DeleteChat = ({ sessionId }) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
+      body: JSON.stringify({
+        username: "jeremy",
+      }),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Success:", data);
+      .then((res) => {
+        fetchSessions();
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        } else {
+          setError(null);
+        }
       })
       .catch((error) => {
+        fetchSessions();
         console.error("Error:", error);
+        setError(`Error deleting chat: ${error.message}`); // Set error message in parent component
       });
   }
 
