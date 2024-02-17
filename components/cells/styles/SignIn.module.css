@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  padding-top: 1rem;
+  padding: 20px; /* Adjusted to avoid duplicate padding property */
+}
+
+.cardsContainer {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.signInButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 10px;
+}

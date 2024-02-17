@@ -11,7 +11,8 @@ import {
   Spinner,
 } from "@nextui-org/react";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { getTokens } from "../../lib/utils/sessionToken";
 import CustomErrorAlert from "../atoms/CustomErrorDisplayer";
 import { DeleteChat } from "./DeleterChat";
 import styles from "./styles/ChatSessionsList.module.css";
@@ -24,24 +25,37 @@ export interface SessionType {
 
 const avatar = "/static/bot-veal-no-bg.png";
 
-const ChatSessionDataFetcher = ({}: { sessions: SessionType[] }) => {
+const ChatSessionDataFetcher = () => {
   const [sessions, setSessions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const isFetchedRef = useRef(false);
 
   useEffect(() => {
+    // if (!isFetchedRef.current) {
     fetchSessions();
+    //   isFetchedRef.current = true;
+    // }
   }, []);
 
   const fetchSessions = async () => {
     setIsLoading(true);
     try {
+      const tokens = await getTokens();
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_NESTJS_BACKEND_API_HOST}/ai-speaker/user/jeremy/sessions`
+        `${process.env.NEXT_PUBLIC_NESTJS_BACKEND_API_HOST}/ai-speaker/sessions-list`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${tokens.accessToken}`,
+          },
+        }
       );
       if (!response.ok) throw new Error("Network response was not ok");
       const data = await response.json();
-      setSessions(data);
+      console.log("data", data.data);
+      setSessions(data.data);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -77,7 +91,7 @@ const ChatSessionDataFetcher = ({}: { sessions: SessionType[] }) => {
               <Divider />
               <CardBody>
                 {/* <Spacer y={8} /> */}
-                <p>Request made: {(session.historyLength - 1) / 2}</p>
+                <p>Request made: {(session.numberOfmessages - 1) / 2}</p>
               </CardBody>
               <Divider />
               <CardFooter>

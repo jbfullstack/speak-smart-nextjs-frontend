@@ -18,15 +18,6 @@ import VoiceSelector from "./voice-selector";
 const avatar = "/static/bot-veal-no-bg.png";
 
 const CreateChatSession: React.FC = () => {
-  // const { theme } = useTheme();
-  // const isDark = theme === "dark";
-
-  // const buttonStyle = {
-  //   backgroundColor: isDark ? "#0072F5" : "",
-  //   color: "white", // Set text color if needed
-  //   // Add other styling as necessary
-  // };
-
   return (
     <div className={styles.container}>
       <Card className="max-w-[400px]">
