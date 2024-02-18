@@ -16,12 +16,13 @@ import React, { useState } from "react";
 import CustomErrorAlert from "../atoms/CustomErrorDisplayer";
 import styles from "./styles/SignIn.module.css";
 
-const avatar = "/static/bot-veal-no-bg.png"; // Ensure this path is correct
+const button_logo = "/static/buttons/futuristic_login_button_no_bg.png";
 const SignUpForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [pseudonyme, setPseudonyme] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isHovering, setIsHovering] = useState(false);
   const router = useRouter();
   const placement = "outside";
 
@@ -74,8 +75,9 @@ const SignUpForm: React.FC = () => {
                 alt="avatar"
                 height={40}
                 radius="sm"
-                src={avatar}
+                src={button_logo}
                 width={40}
+                className={isHovering ? styles.rotate : ""}
               />
               <div className="flex flex-col">
                 <p className="text-md"> </p>
@@ -115,7 +117,13 @@ const SignUpForm: React.FC = () => {
             <Divider />
             <CardFooter>
               <div className={styles.signInButtonContainer}>
-                <Button type="submit">Sign up</Button>
+                <Button
+                  type="submit"
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
+                >
+                  Sign up
+                </Button>
               </div>
             </CardFooter>
           </Card>

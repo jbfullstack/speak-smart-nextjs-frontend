@@ -67,6 +67,7 @@ export default NextAuth({
           token.refreshToken = data.data?.refreshToken;
           token.accessTokenExpires = data.data?.accessTokenExpires;
         } else {
+          token = null;
           signOut();
         }
       }

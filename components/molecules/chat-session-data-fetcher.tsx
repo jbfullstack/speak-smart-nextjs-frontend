@@ -5,6 +5,7 @@ import {
   CardFooter,
   CardHeader,
   Divider,
+  Image,
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -25,6 +26,9 @@ export interface SessionType {
 }
 
 const avatar = "/static/bot-veal-no-bg.png";
+const not_found_picture = "/static/errors/404_not_found_cute_robot_no_bg.png";
+const searching_picture =
+  "/static/errors/404_not_found_stand_up_robot_no_bg.png";
 
 const ChatSessionDataFetcher = () => {
   const [sessions, setSessions] = useState([]);
@@ -46,14 +50,17 @@ const ChatSessionDataFetcher = () => {
       const response = await authAxios.get(
         `${process.env.NEXT_PUBLIC_NESTJS_BACKEND_API_HOST}/ai-speaker/sessions-list`
       );
-      if (response.status !== 200)
-        throw new Error("Network response was not ok");
+      if (response.status !== 200) {
+        setError(`Error fetching sessions list ${error.message}`);
+        // throw new Error("Error fetching sessions list: " + response.status);
+      }
 
       const data = await response.data;
       console.log("data", data.data);
       setSessions(data.data);
     } catch (error) {
-      setError(error.message);
+      console.error("Error:", JSON.stringify(error));
+      setError(`${error.message}`);
     } finally {
       setIsLoading(false);
       isFetchedRef.current = false;
@@ -62,8 +69,23 @@ const ChatSessionDataFetcher = () => {
 
   const clearError = () => setError(null);
 
-  // if (error) return <div>Error: {error}</div>;
-  if (isLoading) return <Spinner label="Loading sessions..." color="warning" />;
+  if (isLoading)
+    return (
+      <>
+        <Spinner label="Loading sessions..." color="warning" />
+        {/* <div className={styles.container}> */}
+        <div className={styles.centerContent}>
+          {/* <div className={styles.textConten}>No session found</div> */}
+          <Image
+            alt="not found picture"
+            src={searching_picture}
+            radius="sm"
+            className="notFoundImage"
+          />
+        </div>
+        {/* </div> */}
+      </>
+    );
 
   return (
     <div className={styles.container}>
@@ -112,7 +134,15 @@ const ChatSessionDataFetcher = () => {
             </Card>
           ))
         ) : (
-          <div>No Saved Sessions</div>
+          <div className={styles.centerContent}>
+            <div className={styles.textConten}>No session found</div>
+            <Image
+              alt="not found picture"
+              src={not_found_picture}
+              radius="sm"
+              className="notFoundImage"
+            />
+          </div>
         )}
       </div>
     </div>
