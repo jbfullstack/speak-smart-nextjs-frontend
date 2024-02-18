@@ -12,6 +12,7 @@ import {
 } from "@nextui-org/react";
 
 import { useEffect, useRef, useState } from "react";
+import { authAxios } from "../../lib/utils/authAxios";
 import { getTokens } from "../../lib/utils/sessionToken";
 import CustomErrorAlert from "../atoms/CustomErrorDisplayer";
 import { DeleteChat } from "./DeleterChat";
@@ -32,34 +33,30 @@ const ChatSessionDataFetcher = () => {
   const isFetchedRef = useRef(false);
 
   useEffect(() => {
-    // if (!isFetchedRef.current) {
-    fetchSessions();
-    //   isFetchedRef.current = true;
-    // }
+    if (!isFetchedRef.current) {
+      fetchSessions();
+      isFetchedRef.current = true;
+    }
   }, []);
 
   const fetchSessions = async () => {
     setIsLoading(true);
     try {
       const tokens = await getTokens();
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_NESTJS_BACKEND_API_HOST}/ai-speaker/sessions-list`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${tokens.accessToken}`,
-          },
-        }
+      const response = await authAxios.get(
+        `${process.env.NEXT_PUBLIC_NESTJS_BACKEND_API_HOST}/ai-speaker/sessions-list`
       );
-      if (!response.ok) throw new Error("Network response was not ok");
-      const data = await response.json();
+      if (response.status !== 200)
+        throw new Error("Network response was not ok");
+
+      const data = await response.data;
       console.log("data", data.data);
       setSessions(data.data);
     } catch (error) {
       setError(error.message);
     } finally {
       setIsLoading(false);
+      isFetchedRef.current = false;
     }
   };
 

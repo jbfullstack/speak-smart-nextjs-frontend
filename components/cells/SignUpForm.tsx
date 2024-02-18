@@ -23,6 +23,7 @@ const SignUpForm: React.FC = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+  const placement = "outside";
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,8 +68,8 @@ const SignUpForm: React.FC = () => {
 
       <div className={styles.cardsContainer}>
         <form onSubmit={handleSignUp}>
-          <Card>
-            <CardHeader>
+          <Card className="max-w-[400px]">
+            <CardHeader className="flex gap-3">
               <Image
                 alt="avatar"
                 height={40}
@@ -85,21 +86,27 @@ const SignUpForm: React.FC = () => {
             <CardBody>
               <Input
                 isRequired
-                placeholder="Email"
+                key={placement}
+                label="Email"
+                labelPlacement={placement}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <Spacer y={0.5} />
+              <Spacer y={1} />
               <Input
                 isRequired
-                placeholder="Pseudonyme"
+                key={placement}
+                label="Pseudonyme"
+                labelPlacement={placement}
                 value={pseudonyme}
                 onChange={(e) => setPseudonyme(e.target.value)}
               />
-              <Spacer y={0.5} />
+              <Spacer y={1} />
               <Input
                 isRequired
-                placeholder="Password"
+                key={placement}
+                label="Password"
+                labelPlacement={placement}
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -107,7 +114,9 @@ const SignUpForm: React.FC = () => {
             </CardBody>
             <Divider />
             <CardFooter>
-              <Button type="submit">Sign up</Button>
+              <div className={styles.signInButtonContainer}>
+                <Button type="submit">Sign up</Button>
+              </div>
             </CardFooter>
           </Card>
         </form>

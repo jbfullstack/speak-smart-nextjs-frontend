@@ -1,5 +1,6 @@
 import { Button, Divider, Spacer } from "@nextui-org/react";
 
+import { authAxios } from "../../lib/utils/authAxios";
 import styles from "./styles/ChatSessionsList.module.css";
 
 export const DeleteChat = ({ sessionId, fetchSessions, setError }) => {
@@ -8,28 +9,21 @@ export const DeleteChat = ({ sessionId, fetchSessions, setError }) => {
     `/ai-speaker/${sessionId}`;
 
   function deleteChat() {
-    fetch(endpoint, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-      },
-      body: JSON.stringify({
-        username: "jeremy",
-      }),
-    })
+    authAxios
+      .delete(endpoint)
       .then((res) => {
-        fetchSessions();
-        if (!res.ok) {
-          throw new Error(res.statusText);
+        if (res.status !== 204) {
+          setError(`Expected status was 240, but got ${res.status}`);
         } else {
           setError(null);
         }
       })
       .catch((error) => {
-        fetchSessions();
         console.error("Error:", error);
         setError(`Error deleting chat: ${error.message}`); // Set error message in parent component
+      })
+      .finally(() => {
+        fetchSessions();
       });
   }
 

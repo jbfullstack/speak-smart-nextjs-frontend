@@ -94,7 +94,7 @@ const SignInForm: React.FC = () => {
                   label="Password"
                   type="password"
                   labelPlacement={placement}
-                  value={pseudonyme}
+                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
