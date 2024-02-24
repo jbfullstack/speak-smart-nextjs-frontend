@@ -1,14 +1,14 @@
 import Selector from "../atoms/selector";
 import styles from "./styles/VoiceSelector.module.css";
 
-const PersonalitySelector = () => {
+const PersonalitySelector = ({ value, onValueChange }) => {
   return (
     <div className={styles.selector}>
       <Selector
         options={["Funny", "Serious", "Friendly", "Calm", "Cautious"]}
         displayMessage="Personality:"
-        defaultValue="Funny"
-        selectionChanged={null}
+        defaultValue={value}
+        selectionChanged={onValueChange}
       />
     </div>
   );

@@ -7,17 +7,38 @@ import {
   Divider,
   Image,
   Spacer,
+  Spinner,
 } from "@nextui-org/react";
-import React from "react";
+import { useState } from "react";
+import { useHttp } from "../../src/hooks/useHttp";
 import InputSessionname from "../atoms/input-sessionname";
-import SwitchVerbalChat from "../atoms/switch-verbalchat";
 import PersonalitySelector from "./personality-selector";
 import styles from "./styles/CreateChatSession.module.css";
-import VoiceSelector from "./voice-selector";
 
 const avatar = "/static/bot-veal-no-bg.png";
 
-const CreateChatSession: React.FC = () => {
+const CreateChatSession = () => {
+  const { sendRequest, isLoading, error } = useHttp();
+  const [sessionName, setSessionName] = useState("");
+  const [voiceType, setVoiceType] = useState("");
+  const [personalityType, setPersonalityType] = useState("Funny");
+  const [verbalChat, setVerbalChat] = useState(false);
+
+  const createSession = async () => {
+    // Assuming your backend expects session name, voice type, personality type, and verbal chat as part of the request body
+    const sessionData = {
+      sessionName,
+      personality: personalityType,
+    };
+
+    await sendRequest(
+      `${process.env.NEXT_PUBLIC_NESTJS_BACKEND_API_HOST}/ai-speaker/start-session`,
+      "POST",
+      sessionData
+    );
+    // Here, you might want to handle the response, such as showing a success message or handling errors
+  };
+
   return (
     <div className={styles.container}>
       <Card className="max-w-[400px]">
@@ -30,21 +51,30 @@ const CreateChatSession: React.FC = () => {
         </CardHeader>
         <Divider />
         <CardBody>
-          <InputSessionname />
+          <InputSessionname
+            value={sessionName}
+            onValueChange={setSessionName}
+          />
           <Spacer y={8} />
           <p>Define the attribute for your personal Jarvis</p>
           <Divider />
           <div className={styles.selectorsContainer}>
-            <VoiceSelector />
-            <PersonalitySelector />
+            {/* <VoiceSelector /> */}
+            <PersonalitySelector
+              value={personalityType}
+              onValueChange={setPersonalityType}
+            />
           </div>
         </CardBody>
         <Divider />
         <CardFooter>
-          <SwitchVerbalChat></SwitchVerbalChat>
+          {/* <SwitchVerbalChat></SwitchVerbalChat> */}
+          {isLoading && <Spinner label="Creating session..." color="current" />}
+          {error && <p style={{ color: "red" }}>{error}</p>}
           <div className={styles.startChattingButtonContainer}>
-            {/* <Button style={buttonStyle}>Start Chatting</Button> */}
-            <Button>Start Chatting</Button>
+            <Button disabled={isLoading} onClick={createSession}>
+              {isLoading ? "Loading..." : "Start Chatting"}
+            </Button>
           </div>
         </CardFooter>
       </Card>

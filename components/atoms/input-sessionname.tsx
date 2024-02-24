@@ -1,10 +1,12 @@
 import { Input } from "@nextui-org/react";
-import React from "react";
 
-const InputSessionname = () => {
-  const [value, setValue] = React.useState("");
+// Add props definition to accept value and onValueChange from the parent
+const InputSessionname = ({ value, onValueChange }) => {
   const placement = "outside";
 
+  // Use the value and onValueChange props directly in the Input component
+  // Ensure that the Input component uses onChange to handle changes, not onValueChange,
+  // unless it specifically supports onValueChange
   return (
     <div className="flex w-full flex-wrap items-end md:flex-nowrap mb-6 md:mb-0 gap-4">
       <Input
@@ -13,7 +15,7 @@ const InputSessionname = () => {
         label="Session name"
         labelPlacement={placement}
         value={value}
-        onValueChange={setValue}
+        onChange={(e) => onValueChange(e.target.value)} // Adjusted to use standard onChange event
         description="Name of the chat session"
       />
     </div>
