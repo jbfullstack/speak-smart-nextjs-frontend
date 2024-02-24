@@ -9,6 +9,7 @@ import {
   Spacer,
   Spinner,
 } from "@nextui-org/react";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { useHttp } from "../../src/hooks/useHttp";
 import InputSessionname from "../atoms/input-sessionname";
@@ -23,6 +24,9 @@ const CreateChatSession = () => {
   const [voiceType, setVoiceType] = useState("");
   const [personalityType, setPersonalityType] = useState("Funny");
   const [verbalChat, setVerbalChat] = useState(false);
+  const { data: session } = useSession();
+  const userPseudo = session?.user?.pseudo || "unknow pseudo";
+  console.log(JSON.stringify(session));
 
   const createSession = async () => {
     // Assuming your backend expects session name, voice type, personality type, and verbal chat as part of the request body
@@ -46,7 +50,7 @@ const CreateChatSession = () => {
           <Image alt="avatar" height={40} radius="sm" src={avatar} width={40} />
           <div className="flex flex-col">
             <p className="text-md">Build your own Jarvis</p>
-            <p className="text-small text-default-500">Jarvis's master</p>
+            <p className="text-small text-default-500">{userPseudo}</p>
           </div>
         </CardHeader>
         <Divider />

@@ -1,4 +1,4 @@
-// pages/api/auth/[...nextauth].ts
+import { jwtDecode } from "jwt-decode";
 
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -42,6 +42,11 @@ export default NextAuth({
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
         token.accessTokenExpires = user.accessTokenExpires;
+
+        const decoded = jwtDecode<Record<string, any>>(user.accessToken);
+        token.userPseudo = decoded.pseudo;
+        token.userRole = decoded.role;
+        token.userPermissions = decoded.permissions;
       }
 
       const now = Date.now();
@@ -77,6 +82,9 @@ export default NextAuth({
     session: async ({ session, token }) => {
       session.accessToken = token.accessToken as string;
       session.refreshToken = token.refreshToken as string;
+      session.user.pseudo = token.userPseudo as string;
+      session.user.role = token.userRole as string;
+      session.user.permissions = token.userPermissions as string[];
       return session;
     },
     // Redirect to login page after signOut
