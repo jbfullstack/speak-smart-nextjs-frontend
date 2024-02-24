@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Use the full height of the viewport */
+}
+
+.cardHeader {
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.cardBody {
+  flex-grow: 1; /* Grow to use available space */
+  overflow-y: auto; /* Add vertical scrollbar */
+}
+
+.cardFooter {
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.chatContainer {
+  max-height: 100%; /* Ensure this doesn't exceed the card body */
+  overflow-y: auto; /* Scrollbar if content is too tall */
+  /* ... rest of your chat container styles */
+}
+
+.message {
+  margin-bottom: 12px;
+  padding: 8px;
+  border-radius: 16px;
+  max-width: 80%; /* Max width for messages */
+}
+
+.message.human {
+  background: #d1ecf1; /* Light blue for human messages */
+  color: #0c5460;
+  align-self: flex-start; /* Align to left */
+}
+
+.message.ai {
+  background: #fefefe; /* Slightly off-white for AI messages */
+  color: #666;
+  align-self: flex-end; /* Align to right */
+}
+
+.message p {
+  margin: 0; /* Remove default paragraph margins */
+}
+
+.message span {
+  display: block;
+  font-size: 0.75rem; /* Smaller font size for date */
+  margin-top: 8px;
+  color: #999;
+}
+
+.input-section {
+  display: flex;
+  margin-top: 12px;
+}
+
+.input-section input {
+  flex-grow: 1; /* Input grows to fill available space */
+  margin-right: 8px; /* Space between input and button */
+}
+
+.input-section button {
+  white-space: nowrap; /* Prevents button text from wrapping */
+}
+
+@media (max-width: 768px) {
+  .message {
+    max-width: 100%; /* Full width for smaller screens */
+  }
+}

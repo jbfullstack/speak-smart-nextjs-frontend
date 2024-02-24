@@ -1,0 +1,28 @@
+.message {
+  padding: 10px 15px;
+  border-radius: 15px;
+  margin: 10px 0;
+  max-width: 60%; /* Control the width of the messages */
+  word-wrap: break-word; /* Ensure long words do not overflow */
+}
+
+.message.ai {
+  background-color: var(--bg-ai-message);
+  align-self: flex-start;
+  color: var(--text-color);
+}
+
+.message.human {
+  background-color: var(--bg-human-message);
+  align-self: flex-end;
+  text-align: right;
+  color: var(--text-color);
+}
+
+/* Styles for the date below the message */
+.message span {
+  display: block;
+  font-size: 0.75rem;
+  margin-top: 5px;
+  color: #666;
+}
