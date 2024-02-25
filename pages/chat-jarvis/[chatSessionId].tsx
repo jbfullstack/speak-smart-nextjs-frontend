@@ -1,14 +1,16 @@
 import {
+  Button,
   Card,
   CardBody,
   CardFooter,
   CardHeader,
   Divider,
+  Input,
   Spacer,
   Spinner,
 } from "@nextui-org/react";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Layout from "../../components/layout";
 import ChatMessage from "../../components/molecules/ChatMessage";
 import { useHttp } from "../../src/hooks/useHttp";
@@ -64,11 +66,19 @@ const ChatJarvis = () => {
   }, [chatData]);
 
   const sendMessage = async () => {
+    const userMessage = {
+      message: newMessage,
+      date: new Date().toISOString(),
+      type: "human",
+    };
+
     const response = await sendRequest(
       `${chatting_baseUrl}/${chatSessionId}`,
       "POST",
       { message: newMessage }
     );
+
+    setMessages((prevMessages) => [...prevMessages, userMessage]);
 
     if (response.status === 201) {
       setMessages((prevMessages) => [...prevMessages, response.data.message]);
@@ -78,6 +88,16 @@ const ChatJarvis = () => {
 
     setNewMessage(""); // Clear input after sending
   };
+
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   return (
     <Layout pageTitle="Chat">
@@ -98,20 +118,28 @@ const ChatJarvis = () => {
               {messages.map((msg, index) =>
                 msg ? <ChatMessage key={index} message={msg} /> : null
               )}
+              <div ref={messagesEndRef} />{" "}
+              {/* Scroll to bottom on new message */}
             </div>
           </CardBody>
           <Divider />
           <CardFooter className={styles.cardFooter}>
             <div className={styles.inputSection}>
-              <input
+              <Input
                 type="text"
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
                 placeholder="Type a message"
+                onKeyUp={(e) => {
+                  if (e.key === "Enter" && newMessage.trim() !== "") {
+                    sendMessage();
+                  }
+                }}
               />
-              <button onClick={sendMessage} disabled={isLoading}>
+              <Spacer x={10} />
+              <Button onClick={sendMessage} disabled={isLoading}>
                 {isLoading ? "Sending..." : "Send"}
-              </button>
+              </Button>
             </div>
           </CardFooter>
         </Card>

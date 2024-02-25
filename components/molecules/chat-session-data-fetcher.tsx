@@ -12,6 +12,7 @@ import {
   Spinner,
 } from "@nextui-org/react";
 
+import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useHttp } from "../../src/hooks/useHttp";
 import CustomErrorAlert from "../atoms/CustomErrorDisplayer";
@@ -28,9 +29,10 @@ const avatar = "/static/bot-veal-no-bg.png";
 const not_found_picture = "/static/errors/404_not_found_cute_robot_no_bg.png";
 const searching_picture =
   "/static/errors/404_not_found_stand_up_robot_no_bg.png";
-const url = `${process.env.NEXT_PUBLIC_NESTJS_BACKEND_API_HOST}/ai-speaker/sessions-list`;
+const backendGetSessionListUrl = `${process.env.NEXT_PUBLIC_NESTJS_BACKEND_API_HOST}/ai-speaker/sessions-list`;
 
 const ChatSessionDataFetcher = () => {
+  const router = useRouter();
   const {
     isLoading,
     error,
@@ -43,7 +45,7 @@ const ChatSessionDataFetcher = () => {
 
   useEffect(() => {
     if (!isFetchedRef.current) {
-      sendRequest(url);
+      sendRequest(backendGetSessionListUrl);
       isFetchedRef.current = true;
     }
   }, [sendRequest]);
@@ -60,6 +62,10 @@ const ChatSessionDataFetcher = () => {
     setLocalSessions((currentSessions) =>
       currentSessions.filter((session) => session.uuid !== sessionId)
     );
+  };
+
+  const redirectToChat = (uuid) => {
+    router.push(`/chat-jarvis/${uuid}`);
   };
 
   if (isLoading) {
@@ -102,7 +108,7 @@ const ChatSessionDataFetcher = () => {
                 </CardHeader>
                 <Divider />
                 <CardBody>
-                  <p>Request made: {session.historyLength}</p>
+                  <p>Request made: {session.numberOfmessages}</p>
                 </CardBody>
                 <Divider />
                 <CardFooter>
@@ -119,6 +125,12 @@ const ChatSessionDataFetcher = () => {
                       />
                     </PopoverContent>
                   </Popover>
+                  <div className={styles.startChattingButtonContainer}>
+                    {" "}
+                    <Button onClick={() => redirectToChat(session.uuid)}>
+                      Chat
+                    </Button>
+                  </div>
                 </CardFooter>
               </Card>
             ))

@@ -1,28 +1,27 @@
 .message {
-  padding: 10px 15px;
-  border-radius: 15px;
-  margin: 10px 0;
-  max-width: 60%; /* Control the width of the messages */
-  word-wrap: break-word; /* Ensure long words do not overflow */
-}
-
-.message.ai {
-  background-color: var(--bg-ai-message);
-  align-self: flex-start;
-  color: var(--text-color);
+  margin-bottom: 12px;
+  padding: 8px;
+  border-radius: 16px;
+  max-width: 95%;
+  word-wrap: break-word;
 }
 
 .message.human {
-  background-color: var(--bg-human-message);
+  background: #d1ecf1;
+  color: #0c5460;
   align-self: flex-end;
-  text-align: right;
-  color: var(--text-color);
+  margin-right: 12px;
 }
 
-/* Styles for the date below the message */
+.message.ai {
+  background: #fefefe;
+  color: #666;
+  align-self: flex-start;
+}
+
 .message span {
   display: block;
   font-size: 0.75rem;
-  margin-top: 5px;
-  color: #666;
+  color: #999;
+  margin-top: 8px;
 }

@@ -41,6 +41,12 @@
   padding: 10px;
 }
 
+.startChattingButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
 .centerContent {
   display: flex;
   flex-direction: column;
