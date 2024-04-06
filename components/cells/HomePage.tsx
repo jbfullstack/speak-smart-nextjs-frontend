@@ -1,14 +1,12 @@
 import { Button, Card, Divider, Image, Spacer } from "@nextui-org/react";
 import Layout from "../layout";
 
-import VerifyTokens from "../molecules/VerifyTokens";
 import styles from "./styles/HomePage.module.css";
 const logo = "/static/main-logo-no-bg-cropped.png";
 
 export default function Home() {
   return (
     <Layout pageTitle="Home">
-      <VerifyTokens />
       <div className={styles.container}>
         <Card className={styles.card}>
           <h1 className={styles.heading1}>Build Your Personal AI Assistant</h1>

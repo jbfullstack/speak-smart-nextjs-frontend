@@ -12,7 +12,6 @@ export default function SavedChatPage() {
 
   return (
     <Layout pageTitle={title}>
-      <h1 className="text-4xl font-bold ml-4 p-2">{title}</h1>
       <ChatSessionDataFetcher />
     </Layout>
   );
