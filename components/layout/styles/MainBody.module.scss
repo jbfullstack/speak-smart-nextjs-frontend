@@ -1,0 +1,8 @@
+.main_body {
+    grid-area: body;
+    overflow: auto;
+    width: 100%;
+    justify-self: center;
+    display: grid;
+    align-content: start;
+}

@@ -1,7 +1,7 @@
 import { Button, Divider, Spacer, Spinner } from "@nextui-org/react";
 import { useState } from "react";
 import { useHttp } from "../../src/hooks/useHttp";
-import styles from "./styles/ChatSessionsList.module.css";
+import styles from "./styles/ChatSessionsList.module.scss";
 
 export const DeleteChat = ({ sessionId, onDeleteSuccess }) => {
   const { sendRequest } = useHttp();

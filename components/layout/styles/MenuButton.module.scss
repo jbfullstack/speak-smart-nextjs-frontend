@@ -1,19 +1,18 @@
 
 .menu_button {
-    display: none; /* Hide by default, shown in media query */
-    position: fixed; /* Fixed position */
-    z-index: 1000; /* Ensure it's above most other elements */
-    top: 10px; /* Adjust as needed */
-    right: -1.5rem; /* Place on the right */
-    background: transparent; /* Optional: make the background transparent */
-    border: none; /* Optional: remove border */
-    cursor: pointer; /* Change cursor to pointer */
-  }
-  
-  /* Sidebar initially off-screen on smaller screens */
+  display: none;
+  position: fixed; 
+  z-index: 1000;
+  top: 5px;
+  right: 15px;
+  min-width: 0;
+  height: fit-content;
+  padding: 0px;
+  background: transparent;
+  cursor: pointer;
+
   @media (max-width: 768px) {  
-    .menu_button {
-      display: inline-block; /* or 'block' depending on your layout */
+      display: grid;
+      align-items: center;
     }
-  }
-  
+}

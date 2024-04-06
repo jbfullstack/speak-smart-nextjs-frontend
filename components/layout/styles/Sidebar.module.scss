@@ -1,5 +1,6 @@
 .sidebar {
     --side-bar-width: 8rem;
+    grid-area: menu;
     display: flex;
     flex-direction: column;
     gap: 10px;
