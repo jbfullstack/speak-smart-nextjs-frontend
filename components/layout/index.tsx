@@ -3,6 +3,8 @@ import Head from "next/head";
 import { useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import Sidebar from "./Sidebar"; // Adjust the import path as necessary
+import styles from "./styles/MenuButton.module.scss";
+
 
 export default function Layout({ pageTitle, children }) {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -18,7 +20,7 @@ export default function Layout({ pageTitle, children }) {
         <title>{titleConcat}</title>
       </Head>
       <div className="flex min-h-screen">
-        <Button className="menu-button" onClick={toggleSidebar}>
+        <Button className={`${styles.menu_button}`} onClick={toggleSidebar}>
           <FiMenu size={32} />
         </Button>
         <Sidebar show={showSidebar} setter={setShowSidebar} />

@@ -1,7 +1,8 @@
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import router, { useRouter } from "next/router";
-import styles from "./styles/Sidebar.module.scss";
+import menuItemStyle from "./styles/MenuItem.module.scss";
+import sideBarStyle from "./styles/Sidebar.module.scss";
 
 import { useTheme } from "next-themes";
 import React, { useCallback, useEffect, useState } from "react";
@@ -48,7 +49,7 @@ const Sidebar = ({ show, setter }) => {
         // If onClick is provided, render as button
         return (
           <div
-            className={`flex gap-1 text-md pl-6 py-3 border-b-[1px] border-b-white/10 cursor-pointer${colorClass} ${activeStyle} ${styles.test}`}
+            className={`${menuItemStyle.menu_item} flex gap-1 text-md pl-6 py-3 border-b-[1px] border-b-white/10 cursor-pointer ${colorClass} ${activeStyle}`}
             onClick={onClick}
           >
             {icon}
@@ -60,7 +61,7 @@ const Sidebar = ({ show, setter }) => {
         return (
           <Link href={route} passHref>
             <div
-              className={`flex gap-1 text-md pl-6 py-3 border-b-[1px] border-b-white/10 cursor-pointer ${colorClass} ${activeStyle}`}
+              className={`${menuItemStyle.menu_item} flex gap-1 text-md pl-6 py-3 border-b-[1px] border-b-white/10 cursor-pointer ${colorClass} ${activeStyle}`}
             >
               {icon}
               <span>{name}</span>
@@ -72,7 +73,7 @@ const Sidebar = ({ show, setter }) => {
   );
 
   return (
-    <div className={show ? "sidebar visible" : "sidebar"}>
+    <div className={`${show ? `${sideBarStyle.sidebar} ${sideBarStyle.visible}` : `${sideBarStyle.sidebar}`}`}>
       {/* Sidebar content */}
       <ThemeSwitcher />
       <MenuItem name="Home" route="/" icon={<LiaRobotSolid />} />

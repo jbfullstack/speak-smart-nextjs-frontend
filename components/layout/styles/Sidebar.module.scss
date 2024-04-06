@@ -1,3 +1,20 @@
-.test {
-    background-color: red;
-}
+.sidebar {
+    --side-bar-width: 8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    width: var(--side-bar-width);
+    transition: margin-left 0.5s;
+  }
+  
+  /* Sidebar initially off-screen on smaller screens */
+  @media (max-width: 768px) {
+    .sidebar {
+      margin-left: calc(-1 * var(--side-bar-width));
+    }
+  
+    .visible {
+      margin-left: 0;
+    }
+  }
