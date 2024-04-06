@@ -14,10 +14,6 @@
 
   --navbar-text-light: #000000;
   --navbar-text-dark: #ffffff;
-
-  --bg-ai-message: #f0f0f0; /* Light grey for AI messages */
-  --bg-human-message: #d1ecf1; /* Light blue for Human messages */
-  --text-color: #333; /* Dark text for light mode */
 }
 
 [data-theme="dark"] {
@@ -26,10 +22,6 @@
 
   --navbar-bg: var(--navbar-bg-dark);
   --navbar-text: var(--navbar-text-dark);
-
-  --bg-ai-message: #2a2a2a; /* Darker grey for AI messages */
-  --bg-human-message: #1a5a7a; /* Darker blue for Human messages */
-  --text-color: #fff; /* Light text for dark mode */
 }
 
 [data-theme="light"] {
@@ -38,10 +30,6 @@
 
   --navbar-bg: var(--navbar-bg-light);
   --navbar-text: var(--navbar-text-light);
-
-  --bg-ai-message: #f0f0f0; /* Light grey for AI messages */
-  --bg-human-message: #d1ecf1; /* Light blue for Human messages */
-  --text-color: #333; /* Dark text for light mode */
 }
 
 .sidebar {
