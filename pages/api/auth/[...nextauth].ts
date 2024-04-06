@@ -73,7 +73,7 @@ export default NextAuth({
           token.accessTokenExpires = data.data?.accessTokenExpires;
         } else {
           token = null;
-          signOut();
+          signOut({ callbackUrl: `${process.env.NEXTAUTH_URL}/login` });
         }
       }
 
@@ -86,14 +86,6 @@ export default NextAuth({
       session.user.role = token.userRole as string;
       session.user.permissions = token.userPermissions as string[];
       return session;
-    },
-    // Redirect to login page after signOut
-    async redirect({ url, baseUrl }) {
-      // If signout, redirect to login page
-      if (url.includes("signout")) {
-        return baseUrl + "/login";
-      }
-      return baseUrl;
     },
   },
 });
