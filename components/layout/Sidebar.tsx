@@ -1,6 +1,7 @@
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import router, { useRouter } from "next/router";
+import styles from "./styles/Sidebar.module.scss";
 
 import { useTheme } from "next-themes";
 import React, { useCallback, useEffect, useState } from "react";
@@ -47,7 +48,7 @@ const Sidebar = ({ show, setter }) => {
         // If onClick is provided, render as button
         return (
           <div
-            className={`flex gap-1 text-md pl-6 py-3 border-b-[1px] border-b-white/10 cursor-pointer${colorClass} ${activeStyle}`}
+            className={`flex gap-1 text-md pl-6 py-3 border-b-[1px] border-b-white/10 cursor-pointer${colorClass} ${activeStyle} ${styles.test}`}
             onClick={onClick}
           >
             {icon}
