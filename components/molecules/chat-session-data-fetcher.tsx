@@ -17,7 +17,7 @@ import { useEffect, useRef, useState } from "react";
 import { useHttp } from "../../src/hooks/useHttp";
 import CustomErrorAlert from "../atoms/CustomErrorDisplayer";
 import { DeleteChat } from "./DeleterChat";
-import styles from "./styles/ChatSessionsList.module.css";
+import styles from "./styles/ChatSessionsList.module.scss";
 
 export interface SessionType {
   uuid: string;
@@ -79,13 +79,13 @@ const ChatSessionDataFetcher = () => {
             alt="not found picture"
             src={searching_picture}
             radius="sm"
-            className="notFoundImage"
+            className={`notFoundImage ${styles.loading_image}`}
           />
         </div>
         {/* </div> */}
       </>
     );
-  } else {
+  } else if (localSessions.length > 0) {
     return (
       <div className={styles.container}>
         {error && (
@@ -96,12 +96,13 @@ const ChatSessionDataFetcher = () => {
           />
         )}
 
-        <div className={styles.cardsContainer}>
-          {localSessions.length > 0 ? (
-            localSessions.map((session) => (
+        {/* <div> */}
+          {/* {localSessions.length > 0 ? ( */}
+            {localSessions.map((session) => (
+              <div className={styles.cardsContainer}>
               <Card key={session.uuid} className="max-w-[400px]">
                 <CardHeader className="flex gap-3">
-                  <Image alt="avatar" src={avatar} height={40} width={40} />
+                  <Image className={`${styles.avatar_image}`} alt="avatar" src={avatar} />
                   <div className="flex flex-col">
                     <p className="text-md">{session.sessionName}</p>
                   </div>
@@ -133,15 +134,17 @@ const ChatSessionDataFetcher = () => {
                   </div>
                 </CardFooter>
               </Card>
+              </div>
             ))
-          ) : (
-            <div className={styles.centerContent}>
-              <p>No sessions found</p>
-              <Image alt="not found" src={not_found_picture} width="100%" />
-            </div>
-          )}
-        </div>
+          }
       </div>
+          );
+  } else {
+  return(
+    <div className={styles.centerContent}>
+      <p>No sessions found</p>
+      <Image className={`${styles.not_found_image}`} alt="not found" src={not_found_picture} width="100%" />
+    </div>
     );
   }
 };
