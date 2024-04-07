@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import SignInForm from "./SignInForm";
 import SignUpForm from "./SignUpForm";
-import styles from "./styles/SignIn.module.css";
+import styles from "./styles/SignIn.module.scss";
 
 const AuthForm: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState(false);

@@ -1,5 +1,5 @@
 import Selector from "../atoms/selector";
-import styles from "./styles/VoiceSelector.module.css";
+import styles from "./styles/VoiceSelector.module.scss";
 
 const alloySound = "static/sounds/voices/voice-alloy.mp3";
 const fableSound = "static/sounds/voices/voice-fable.mp3";

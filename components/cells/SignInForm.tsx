@@ -13,7 +13,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import CustomErrorAlert from "../atoms/CustomErrorDisplayer";
-import styles from "./styles/SignIn.module.css";
+import styles from "./styles/SignIn.module.scss";
 
 const button_logo = "/static/buttons/futuristic_login_button_no_bg.png";
 

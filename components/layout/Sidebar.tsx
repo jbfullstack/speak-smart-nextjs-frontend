@@ -74,7 +74,6 @@ const Sidebar = ({ show, setter }) => {
 
   return (
     <div className={`${show ? `${sideBarStyle.sidebar} ${sideBarStyle.visible}` : `${sideBarStyle.sidebar}`}`}>
-      {/* Sidebar content */}
       <ThemeSwitcher />
       <MenuItem name="Home" route="/" icon={<LiaRobotSolid />} />
       {showLogin ? (
