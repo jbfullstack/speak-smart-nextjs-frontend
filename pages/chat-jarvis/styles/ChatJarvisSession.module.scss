@@ -9,68 +9,71 @@
   box-sizing: inherit;
 } */
 
-/* Full height container with column flex layout, centered content */
 .container {
+  margin: 3vh auto;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centers card horizontally */
-  justify-content: center; /* Centers card vertically */
-  height: 100vh;
-  margin: 0 auto;
-  padding: 10px;
-  width: 75%;
+  width: clamp(300px, 80%, 700px);
+
+  .cardHeader,
+  .cardFooter {
+    flex-shrink: 0;
+
+    .inputSection {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 10px;
+
+      input {
+        flex-grow: 1;
+        margin-right: 8px;
+      }
+      
+      button {
+        white-space: nowrap;
+      }
+    }
+  }
+  
+  .cardBody {
+    position: relative;
+    flex-grow: 1;
+    overflow-y: auto;
+    margin: auto;
+    height: 80vh;
+
+    .loadingSpinner {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+      z-index: 10;
+      
+    }
+    .spinnerBg {
+      background: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9;
+    }
+    
+    .chatContainer {
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      overflow-y: auto;
+    }
+  }
 }
 
-.card {
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
-/* Ensures header and footer do not shrink and content is scrollable */
-.cardHeader,
-.cardFooter {
-  flex-shrink: 0;
-}
-
-.cardBody {
-  flex-grow: 1;
-  overflow-y: auto; /* Allows scrolling */
-}
-
-/* Styles for the message container */
-.chatContainer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  overflow-y: auto;
-}
-
-/* Flexbox for input section */
-.inputSection {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* This will push the input to the left and the button to the right */
-  width: 100%; /* Ensures your container takes up the full width */
-  padding: 0 10px; /* Optional: Adds some padding on the sides */
-}
-
-.inputSection input {
-  flex-grow: 1;
-  margin-right: 8px;
-}
-
-.inputSection button {
-  white-space: nowrap; /* Keep button text on one line */
-}
-
-/* Full width for messages on smaller screens */
 @media (max-width: 768px) {
-  .card {
-    padding: 10px; /* Reduces padding on smaller screens */
-    max-width: 95%; /* Allows the card to take more width */
-    margin: 10px; /* Ensures there's space around the card */
+  .container {
+    width: auto;
   }
 }

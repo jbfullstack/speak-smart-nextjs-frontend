@@ -107,12 +107,15 @@ const ChatJarvis = () => {
             {" "}
             {sessionName}
             <Spacer x={20} />
-            {isLoading && (
-              <Spinner label="Loading sessions..." color="current" />
-            )}
           </CardHeader>
           <Divider />
           <CardBody className={styles.cardBody}>
+            {isLoading && (
+              <>
+                <Spinner className={styles.loadingSpinner} label="Loading sessions..." color="current" />
+                <div className={styles.spinnerBg}></div>
+              </>
+            )}
             <div className={styles.chatContainer}>
               {/* Display each message */}
               {messages.map((msg, index) =>
