@@ -23,7 +23,7 @@ export default function Layout({ pageTitle, children }) {
       </Head>
       <div className={`${windowLayoutStyle.window_layout} flex min-h-screen`}>
         <Button className={`${menuButtonStyle.menu_button}`} onClick={toggleSidebar}>
-          <FiMenu size={32} />
+          <FiMenu size={32} className={`${menuButtonStyle.menuIcon} ${showSidebar ? `${menuButtonStyle.menuIconShow}` : ``}`}/>
         </Button>
         <Sidebar show={showSidebar} setter={setShowSidebar} />
         <div className={`${mainBodyStyle.main_body} flex-grow`}>

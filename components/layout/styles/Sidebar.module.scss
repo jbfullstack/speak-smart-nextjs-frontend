@@ -1,21 +1,28 @@
 .sidebar {
     --side-bar-width: 8rem;
     grid-area: menu;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    align-content: start;
     gap: 10px;
     padding: 10px;
     width: var(--side-bar-width);
-    transition: margin-left 0.5s;
+    transition: top 0.5s;
   }
   
   /* Sidebar initially off-screen on smaller screens */
   @media (max-width: 768px) {
     .sidebar {
-      margin-left: calc(-1 * var(--side-bar-width));
+      position: absolute;
+      align-content: space-after;
+      gap: 2vh;
+      top: -100vh;
+      height: 100vh;
+      width: 100vw;
+      background: rgba(black, 0.95);
+      z-index: 100;
     }
   
     .visible {
-      margin-left: 0;
+      top: 0;
     }
   }
