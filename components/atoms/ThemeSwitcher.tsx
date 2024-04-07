@@ -3,7 +3,6 @@ import { useTheme } from "next-themes"; // Adjust the import to your theme conte
 import { useEffect, useState } from "react";
 import { MoonIcon } from "./Icons/MoonIcon";
 import { SunIcon } from "./Icons/SunIcon";
-import styles from "./styles/ThemeSwitcherStyle.module.scss";
 
 export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
