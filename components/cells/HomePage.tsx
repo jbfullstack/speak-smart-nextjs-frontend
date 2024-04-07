@@ -1,7 +1,7 @@
 import { Button, Card, Divider, Image, Spacer } from "@nextui-org/react";
 import Layout from "../layout";
 
-import styles from "./styles/HomePage.module.css";
+import styles from "./styles/HomePage.module.scss";
 const logo = "/static/main-logo-no-bg-cropped.png";
 
 export default function Home() {

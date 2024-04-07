@@ -14,7 +14,7 @@ import { useEffect, useRef, useState } from "react";
 import Layout from "../../components/layout";
 import ChatMessage from "../../components/molecules/ChatMessage";
 import { useHttp } from "../../src/hooks/useHttp";
-import styles from "./styles/ChatJarvisSession.module.css";
+import styles from "./styles/ChatJarvisSession.module.scss";
 
 const chatHistory_baseUrl = `${process.env.NEXT_PUBLIC_NESTJS_BACKEND_API_HOST}/ai-speaker/sessions-history-list`;
 const chatting_baseUrl = `${process.env.NEXT_PUBLIC_NESTJS_BACKEND_API_HOST}/ai-speaker/text-chatting`;

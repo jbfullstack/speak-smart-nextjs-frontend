@@ -10,14 +10,13 @@ import {
   Spinner,
 } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useHttp } from "../../src/hooks/useHttp";
 import InputSessionname from "../atoms/input-sessionname";
 import PersonalitySelector from "./personality-selector";
-import styles from "./styles/CreateChatSession.module.css";
-
+import styles from "./styles/CreateChatSession.module.scss";
 const avatar = "/static/bot-veal-no-bg.png";
-
 const CreateChatSession = () => {
   const { sendRequest, isLoading, error } = useHttp();
   const [sessionName, setSessionName] = useState("");
@@ -26,21 +25,26 @@ const CreateChatSession = () => {
   const [verbalChat, setVerbalChat] = useState(false);
   const { data: session } = useSession();
   const userPseudo = session?.user?.pseudo || "unknow pseudo";
+  const router = useRouter();
   console.log(JSON.stringify(session));
-
   const createSession = async () => {
     // Assuming your backend expects session name, voice type, personality type, and verbal chat as part of the request body
     const sessionData = {
       sessionName,
       personality: personalityType,
     };
-
-    await sendRequest(
+    const sessionResult = await sendRequest(
       `${process.env.NEXT_PUBLIC_NESTJS_BACKEND_API_HOST}/ai-speaker/start-session`,
       "POST",
       sessionData
     );
-    // Here, you might want to handle the response, such as showing a success message or handling errors
+    if (sessionResult?.status === 201) {
+      const sessionId = sessionResult?.data?.data?.sessionId;
+      // Redirect to the chat page with the session ID
+      router.push(`/chat-jarvis/${sessionId}`);
+    } else {
+      console.log("Error creating session", sessionResult.data);
+    }
   };
 
   return (

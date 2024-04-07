@@ -1,4 +1,4 @@
-import styles from "./styles/ChatMessage.module.css";
+import styles from "./styles/ChatMessage.module.scss";
 
 const ChatMessage = ({ message }) => {
   // Add a dark mode check here if you have a state or context to determine the mode

@@ -1,5 +1,5 @@
 import Selector from "../atoms/selector";
-import styles from "./styles/VoiceSelector.module.css";
+import styles from "./styles/VoiceSelector.module.scss";
 
 const PersonalitySelector = ({ value, onValueChange }) => {
   return (
