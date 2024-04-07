@@ -13,6 +13,9 @@
 .centerContent {
   text-align: center;
   margin:auto;
+  height: 100vh;
+  display: grid;
+  place-content: center;
 
   .loading_image, .not_found_image {
     max-height: calc(100vh * 0.8);

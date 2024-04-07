@@ -5,4 +5,8 @@
     justify-self: center;
     display: grid;
     align-content: start;
+
+    @media screen and (max-width: 768px){
+        
+    }
 }

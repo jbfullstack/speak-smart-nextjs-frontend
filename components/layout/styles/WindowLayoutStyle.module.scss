@@ -5,6 +5,7 @@
     width: 100vw;
     justify-items: left;
     grid-template: "menu body" / auto 1fr;
+    overflow: hidden;
 
     @media screen and (max-width: 768px) {
     }
